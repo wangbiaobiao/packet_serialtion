@@ -1,0 +1,21 @@
+ <unifyMessage appName="led" appId="2" version="1" family="com.ziytek.message.types.UnifyMessagePlus">
+	<!-- 心跳包消息（网点主动上报） -->
+	<messageDefinition name="RELAY_HEARTBEAT" typeNum="100">
+	    <field    name="createDateTime"		javaType="timestamp"	format="yyyyMMddHHmmss" binType="ascii"	length="20"/> <!-- 心跳包发送时间 -->
+	    <field    name="UPSvoltage"			javaType="string"		binType="ascii"	length="12"/><!-- 中继器电压 -->
+	   	<field    name="relayPowerStatus"	javaType="string"		binType="ascii"	length="1"/><!-- 中继器电源状态 -->
+	   	<field    name="relayTemperature"	javaType="string"		binType="ascii"	length="10"/><!-- 中继器温度 -->
+	   	<field    name="relayCurrent"		javaType="string"		binType="ascii"	length="10"/><!-- 中继器电流 -->
+	   	<field    name="relayVersion"		javaType="string"		binType="ascii"	length="16"/><!-- 中继器版本 -->
+	   	<field    name="strategyVersion"	javaType="string"		binType="ascii"	length="32"/><!-- 中继器策略版本 -->
+	   	<field    name="errType"			javaType="string"		binType="ascii"	length="1"/> <!-- 中继器异常码 -->
+	   	<field    name="lightBox1"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流,灯箱类型  -->
+   		<field    name="lightBox2"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox3"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox4"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox5"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox6"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox7"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox8"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+	</messageDefinition>
+</unifyMessage>
