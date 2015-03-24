@@ -19,6 +19,7 @@ private:
 def myprint(classname, value, length):
         serialize="\n\t".join([ "is >> %s;" % (i) for i in value])
         field = "\n\t".join([ "ascii<%s> %s;" % i for i in itertools.izip(length, value)])
+        classname="".join([i.capitalize() for i in classname.split("_")])
         print template %(classname,classname, serialize, field)
 
 def print_class(node):

@@ -1,4 +1,4 @@
- <unifyMessage appName="led" appId="2" version="1" family="com.ziytek.message.types.UnifyMessagePlus">
+﻿ <unifyMessage appName="led" appId="2" version="1" family="com.ziytek.message.types.UnifyMessagePlus">
 	<!-- 心跳包消息（网点主动上报） -->
 	<messageDefinition name="RELAY_HEARTBEAT" typeNum="100">
 	    <field    name="createDateTime"		javaType="timestamp"	format="yyyyMMddHHmmss" binType="ascii"	length="20"/> <!-- 心跳包发送时间 -->
@@ -18,4 +18,84 @@
 		<field    name="lightBox7"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
 		<field    name="lightBox8"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
 	</messageDefinition>
-</unifyMessage>
+	
+	<!--  心跳包返回消息 -->
+	<messageDefinition name="RELAY_HEARTBEAT_RESPONSE" typeNum="101">
+	    <field    name="retCode"			javaType="integer"		binType="ascii"	length="8"/> <!-- 结果 -->
+		<field    name="serverDatetime"		javaType="timestamp"	format="yyyyMMddHHmmss" binType="ascii"	length="20"/><!--服务器时间 -->
+		<field    name="relayVersion"		javaType="string"		binType="ascii"	length="16"/><!-- 最新中继器版本 -->
+	   	<field    name="strategyVersion"	javaType="string"		binType="ascii"	length="32"/><!-- 最新中继器策略版本 -->
+	   	<field    name="configVersion"	javaType="string"		binType="ascii"	length="16"/><!-- 最新配置文件版本 -->
+	</messageDefinition>
+	
+	<!-- 采集中继器信息（服务器发往LED网点）--> 
+	<messageDefinition name="ACQUISITION_RELAY" typeNum="200">
+	    <field    name="retCode"			javaType="integer"		binType="ascii"	length="8"/><!-- 结果 -->
+	</messageDefinition>
+	
+	<!-- 中继器信息返回采集消息 --> 
+	<messageDefinition name="ACQUISITION_RELAY_RESPONSE" typeNum="201">
+	    <field    name="retCode"			javaType="integer"		binType="ascii"	length="8"/><!-- 结果 -->
+	    <field    name="errType"			javaType="string"		binType="ascii"	length="1"/> <!-- 中继器异常码 -->
+	    <field    name="createDateTime"		javaType="timestamp"	format="yyyyMMddHHmmss" binType="ascii"	length="20"/> <!-- 心跳包发送时间 -->
+	    <field    name="UPSvoltage"			javaType="string"		binType="ascii"	length="12"/><!-- 中继器电压 -->
+	   	<field    name="relayPowerStatus"	javaType="string"		binType="ascii"	length="1"/><!-- 中继器电源状态 -->
+	   	<field    name="relayTemperature"	javaType="string"		binType="ascii"	length="10"/><!-- 中继器温度 -->
+	   	<field    name="relayCurrent"		javaType="string"		binType="ascii"	length="10"/><!-- 中继器电流 -->
+	   	<field    name="relayVersion"		javaType="string"		binType="ascii"	length="16"/><!-- 中继器版本 -->
+	   	<field    name="strategyVersion"	javaType="string"		binType="ascii"	length="32"/><!-- 中继器策略版本 -->
+	   	<field    name="lightBox1"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流,灯箱类型  -->
+   		<field    name="lightBox2"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox3"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox4"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox5"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox6"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox7"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox8"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+	</messageDefinition>
+	
+	<!-- 控制网点灯箱（服务器发往LED网点）--> 
+	<messageDefinition name="CONTROL_RELAY" typeNum="300">
+	    <field    name="lightBox1"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流,灯箱类型  -->
+   		<field    name="lightBox2"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox3"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox4"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox5"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox6"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox7"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox8"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+	</messageDefinition>
+	
+	<!--  控制网点灯箱 返回消息 --> 
+	<messageDefinition name="CONTROL_RELAY_RESPONSE" typeNum="301">
+	    <field    name="retCode"			javaType="integer"		binType="ascii"	length="8"/><!-- 结果 -->
+	    <field    name="lightBox1"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流,灯箱类型  -->
+   		<field    name="lightBox2"		javaType="string"		binType="ascii"	length="64"/><!-- 同上-->
+		<field    name="lightBox3"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox4"		javaType="string"		binType="ascii"	length="64"/><!-- 同上 -->
+		<field    name="lightBox5"		javaType="string"		binType="ascii"	length="64"/><!-- 同上 -->
+		<field    name="lightBox6"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox7"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+		<field    name="lightBox8"		javaType="string"		binType="ascii"	length="64"/><!-- 同上  -->
+	</messageDefinition>
+	
+	
+	<!-- 网点异常上报 --> 
+	<messageDefinition name="EXCEPTION_RELAY" typeNum="400">
+	    <field    name="errType"			javaType="string"		binType="ascii"	length="1"/> <!-- 中继器异常码 -->
+	    <field    name="lightBox1"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流 -->
+   		<field    name="lightBox2"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流  -->
+		<field    name="lightBox3"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流  -->
+		<field    name="lightBox4"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流  -->
+		<field    name="lightBox5"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流  -->
+		<field    name="lightBox6"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流  -->
+		<field    name="lightBox7"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流  -->
+		<field    name="lightBox8"		javaType="string"		binType="ascii"	length="64"/><!-- 格式：灯箱号,控制类型(手动[1]或自动(策略[0])),开关状态(开[0]或关[1]),灯箱状态(正常[0]或异常[1]),电流  -->
+	</messageDefinition>
+	
+	<!-- 网点异常上报结果返回 --> 
+	<messageDefinition name="EXCEPTION_RELAY_RESPONSE" typeNum="401">
+    	<field    name="retCode"			javaType="integer"		binType="ascii"	length="8"/><!-- 结果 -->
+    </messageDefinition>
+	
+ </unifyMessage>
