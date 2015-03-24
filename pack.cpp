@@ -1,8 +1,19 @@
 #include<iostream>
 #include<sstream>
+#include<string.h>
 using namespace std;
 template <int L> class ascii
 {
+public:
+string getValue()
+{
+	string value(data,L);
+	return value;
+}
+void setValue(string value)
+{
+	strncpy(data,value.data(),L);
+}
 private:
 	char data[L+1];
 friend	istream & operator >>(istream &is, ascii & mydata)
@@ -26,10 +37,25 @@ RelayHertbeat(istream &is)
 	is >> relayTemprature;
 	is >> relayCurrent;
 	
-	cout << DateTime << UPSvolteage<<endl;
-	
 }
-//string getCreateDatTime()
+void serialTion(ostream &os)
+{
+	os << DateTime;
+	os << UPSvolteage;
+	os << relayTemprature;
+	os << relayCurrent;
+}
+string getDateTime()
+{	
+	string value;
+	value = DateTime.getValue();
+	return value;
+}
+void setDateTime(string data)
+{
+	DateTime.setValue(data);
+
+}
 private:
 ascii<2> DateTime;
 ascii<1> UPSvolteage;
@@ -50,7 +76,11 @@ ascii<1> relayCurrent;
 }*/
 int main()
 {
-	char buffer[100] = "hello";
-	istringstream iss("123456");
+	string str("hello",6);
+	istringstream iss(str);
 	RelayHertbeat r(iss);
+	ostringstream oss;
+	cout<<r.getDateTime()<<endl;
+	r.serialTion(oss);
+	cout<<oss.str()<<endl;
 }
