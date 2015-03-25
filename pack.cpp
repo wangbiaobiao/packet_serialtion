@@ -76,7 +76,7 @@ ascii<1> relayCurrent;
 }*/
 int main()
 {
-	string str("hello",6);
+	string str("h\0llo",6);
 	istringstream iss(str);
 	RelayHertbeat r(iss);
 	ostringstream oss;
