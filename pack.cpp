@@ -77,10 +77,13 @@ ascii<1> relayCurrent;
 int main()
 {
 	string str("h\0llo",6);
+	string value;
 	istringstream iss(str);
 	RelayHertbeat r(iss);
 	ostringstream oss;
-	cout<<r.getDateTime()<<endl;
+	value=r.getDateTime();
+	cout<<int(value[1])<<endl;
+	cout<<value.size()<<endl;
 	r.serialTion(oss);
 	cout<<oss.str()<<endl;
 }
